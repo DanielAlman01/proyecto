@@ -1,0 +1,14 @@
+Los integrantes del grupo son:
+    Wilfredo Batista 
+    Daniel Almanza
+    Ghadafy Neville
+
+Para poner en marcha el sistema en local debe instalar xampp, Laragon o cual quier otro servidor web de php.  Luego debe crear la base de datos utilizando el script que esta en la carpeta database de la estructura.
+
+La cadena de conexión a la base de datos está en la carpeta config/db.php
+
+Para poder utilizarla debe registrarse dando clic en el link de navegación correspondiente.
+
+Se tiene ya registrado un usuario de tipo administrador.  Las credenciales son correo: aa@gmail.com y contraseña: admin12345  
+
+La dirección de la aplicación será http://localhost/proyecto_clasificados/index.php

@@ -212,6 +212,29 @@ class anuncio
         return $anuncios;
     }
 
+    public function traerTodosLosAnuncios()
+    {
+
+
+        $anuncios = false;
+
+        $sql  = "SELECT * FROM anuncio join categoria on anuncio.id_categoria=categoria.id_categoria ORDER BY id_anuncio DESC";
+
+        $stmt =  $this->db->prepare($sql);
+
+        try {
+            $stmt->execute();
+            // Obtener los resultados
+            $anuncios = $stmt->fetchAll(PDO::FETCH_OBJ);
+            if (!empty($anuncios)) {
+                return $anuncios;
+            }
+        } catch (PDOException $e) {
+            error_log("Error en traerMisAnuncios(): " . $e->getMessage());
+        }
+        return $anuncios;
+    }
+
 
     public function traerTodosLosAnunciosXCategoria()
     {

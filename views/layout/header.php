@@ -63,7 +63,7 @@ $v = 0;
                             <a href="#">Gestión ADMIN</a>
                             <ul class="dropdown">
                                 <li><a href="<?= BASE_URL ?>categoria/index">Crear Categorias</a></li>
-                                <li><a href="#new">Eliminar Anuncios</a></li>
+                                <li><a href="<?= BASE_URL ?>anuncio/todosLosAnuncios">Eliminar Anuncios</a></li>
                                 <li><a href="<?= BASE_URL ?>usuario/index">Inactivar Usuarios</a></li>
                           
                                 <li><a href="#new">Ver Mensajes</a></li>

@@ -313,6 +313,15 @@ class anuncioController
     }
 
 
+    public function todosLosAnuncios()
+    {
+        utils::isAdmin();  //Verificamos si es usuario tipo ADMIN
+        $anuncio = new anuncio();
+        $anuncios = $anuncio->traerTodosLosAnuncios();
+        require_once 'views/anuncios/listaAnuncios.php';
+    }
+
+
     public function mostrarAnunciosXCategoria()
     {
         // Verificar si el ID de categoría está presente en el GET
@@ -411,6 +420,84 @@ class anuncioController
                 if (!empty($errores)) {
                     $_SESSION['form_errores'] = $errores;
                     header('Location: ' . BASE_URL . 'anuncio/gestionarMisAnuncios'); // Redirigir al formulario
+                    exit;
+                }
+
+        } else  {
+            $_SESSION['registro'] = "Fallido";
+            error_log(" Eliminacion fallida");
+            header('Location:' . BASE_URL . 'anuncio/gestionarMisAnuncios');
+            exit;
+        }
+
+
+
+     }
+
+     public function recuperarAnuncio()
+     {
+
+        if ($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['id'])) {
+
+
+                $id_anuncio = htmlspecialchars(trim($_GET['id']));
+                $id_anuncio =   (int)$id_anuncio;
+                
+                if (empty($id_anuncio)) {
+                    $errores['id_anuncio'] = 'El anuncio no se puede eliminar.';
+                } 
+
+                $elim = new anuncio();
+                $elim->setId_anuncio($id_anuncio);
+                $elim->setEstado('ACTIVO');
+                $elim->setUsuario_modifico($_SESSION['identidad']->id_usuario);
+             
+                if ($elim->eliminarAnuncio()){
+                    header('Location:' . BASE_URL . 'anuncio/todosLosAnuncios');
+                }
+
+                if (!empty($errores)) {
+                    $_SESSION['form_errores'] = $errores;
+                    header('Location: ' . BASE_URL . 'anuncio/todosLosAnuncios'); // Redirigir al formulario
+                    exit;
+                }
+
+        } else  {
+            $_SESSION['registro'] = "Fallido";
+            error_log(" Eliminacion fallida");
+            header('Location:' . BASE_URL . 'anuncio/gestionarMisAnuncios');
+            exit;
+        }
+
+
+
+     }
+
+     public function bajarAnuncio()
+     {
+
+        if ($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['id'])) {
+
+
+                $id_anuncio = htmlspecialchars(trim($_GET['id']));
+                $id_anuncio =   (int)$id_anuncio;
+                
+                if (empty($id_anuncio)) {
+                    $errores['id_anuncio'] = 'El anuncio no se puede eliminar.';
+                } 
+
+                $elim = new anuncio();
+                $elim->setId_anuncio($id_anuncio);
+                $elim->setEstado('ELIMINAR');
+                $elim->setUsuario_modifico($_SESSION['identidad']->id_usuario);
+             
+                if ($elim->eliminarAnuncio()){
+                    header('Location:' . BASE_URL . 'anuncio/todosLosAnuncios');
+                }
+
+                if (!empty($errores)) {
+                    $_SESSION['form_errores'] = $errores;
+                    header('Location: ' . BASE_URL . 'anuncio/todosLosAnuncios'); // Redirigir al formulario
                     exit;
                 }
 

@@ -38,8 +38,14 @@
                 <td><?= $usu->apellido_usuario; ?></td>
                 <td><?= $usu->email; ?></td>
                 <td><?= $usu->estado_usuario; ?></td>
-                <td><?= $usu->estado_usuario == "ACTIVO" ? '<a href='. BASE_URL .'usuario/cambiarEstado&i='.$usu->id_usuario.'&e="INACTIVO" class="btn btn-rojo">INACTIVAR</a>' : '<a href='. BASE_URL .'usuario/cambiarEstado&i='.$usu->id_usuario.'&e="ACTIVO" class="btn btn-verde">ACTIVAR</a>'; ?></td>
-            </tr>
+                <td>
+                    
+                <?php if($usu->estado_usuario === "ACTIVO"){ ?>
+                    <a href="<?= BASE_URL ?>usuario/cambiarEstado&i=<?= $usu->id_usuario; ?>&e=INACTIVO" class='btn btn-rojo'>INACTIVAR</a>
+                 <?php }elseif($usu->estado_usuario === "INACTIVO") { ?>
+                    <a href="<?= BASE_URL ?>usuario/cambiarEstado&i=<?= $usu->id_usuario; ?>&e=ACTIVO" class='btn btn-verde'>ACTIVAR</a>
+                     <?php } ?>
+                     </td> </tr>
         <?php endforeach; ?>
     <?php endif; ?>
 </table>
