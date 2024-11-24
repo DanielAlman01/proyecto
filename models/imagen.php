@@ -42,7 +42,6 @@ class imagen
     }
 
 
-
     function setId_imagen($id_imagen): void
     {
         $this->id_imagen = $id_imagen;
@@ -70,8 +69,13 @@ class imagen
     }
 
 
-
-
+    public function agregarImagen($id_anuncio, $ruta_imagen)
+    {
+        $sql = "INSERT INTO imagen (id_anuncio, ruta_imagen) VALUES (?,?)";
+        $stmt = $this->db->prepare($sql);
+        
+        $stmt->execute(array($id_anuncio, $ruta_imagen));
+    }
 
 
     public function getImagen($id)
@@ -118,10 +122,10 @@ class imagen
     }
 
 
-    public function eliminarImagen()
+    public function eliminarImagen($id)
     {
 
-        $id_anuncio = $this->getId_anuncio();
+        $id_anuncio = $id;
         $estado = "ELIMINADO";
         
 

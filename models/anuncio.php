@@ -226,17 +226,21 @@ class anuncio
         a.ubicacion, 
         a.gusto, 
         u.nombre_usuario, 
-        u.email 
-        FROM 
-            categoria c
-        LEFT JOIN 
-            anuncio a ON a.id_categoria = c.id_categoria AND a.estado = 'ACTIVO'
-        LEFT JOIN 
-            usuario u ON a.id_usuario = u.id_usuario
-        WHERE 
-            c.id_categoria = ?
-        ORDER BY 
-            a.id_anuncio DESC;";
+        u.email, 
+        (SELECT i.ruta_imagen 
+         FROM imagen i 
+         WHERE i.id_anuncio = a.id_anuncio 
+         LIMIT 1) AS ruta_imagen
+    FROM 
+        categoria c
+    LEFT JOIN 
+        anuncio a ON a.id_categoria = c.id_categoria AND a.estado = 'ACTIVO'
+    LEFT JOIN 
+        usuario u ON a.id_usuario = u.id_usuario
+    WHERE 
+        c.id_categoria = ?
+    ORDER BY 
+        a.id_anuncio DESC";
 
 
 
@@ -261,76 +265,68 @@ class anuncio
 
     public function traerImagenes($id)
     {
-
-        $imagenes = false;
-        $id_anuncio=$id;
-
+        $imagenes = [];
         $sql = "SELECT i.ruta_imagen FROM imagen i WHERE i.id_anuncio = ? ORDER BY id_imagen DESC";
-
-        $stmt =  $this->db->prepare($sql);
-
+    
+        $stmt = $this->db->prepare($sql);
+    
         try {
-            $stmt->execute(array($id_anuncio));
+            $stmt->execute(array($id));
             $imagenes = $stmt->fetchAll(PDO::FETCH_OBJ);
-            
         } catch (PDOException $e) {
-            error_log("Error en la carga de imaganes: " . $e->getMessage());
-            return $imagenes;
+            error_log("Error en la carga de imágenes: " . $e->getMessage());
         }
-        
+    
+        return $imagenes; // IMPORTANTE: Devolver el resultado
     }
+    
 
 
     public function traerDestacados()
     {
-
-        $id_categoria=$this->getId_categoria();
         $anuncios = false;
-
+    
         $sql = "SELECT 
-            c.nombre_categoria, 
-            a.id_anuncio, 
-            a.titulo, 
-            a.ubicacion, 
-            a.fecha_publicacion,
-            a.gusto,  
-            u.nombre_usuario, 
-            u.email,
-            (SELECT DISTINCT i.ruta_imagen 
-             FROM imagen i 
-             WHERE i.id_anuncio = a.id_anuncio 
-             LIMIT 1) AS ruta_imagen
-        FROM 
-            categoria c
-        LEFT JOIN 
-            anuncio a ON a.id_categoria = c.id_categoria AND a.estado = 'ACTIVO'
-        LEFT JOIN 
-            usuario u ON a.id_usuario = u.id_usuario
-        JOIN 
-            imagen i ON a.id_anuncio = i.id_anuncio
-      
-        ORDER BY 
-            a.gusto DESC, 
-            a.id_anuncio DESC
-        ";
-
-        $stmt =  $this->db->prepare($sql);
-
+        a.id_anuncio,
+        a.titulo,
+        a.descripcion,
+        a.precio,
+        a.ubicacion,
+        a.fecha_publicacion,
+        a.gusto,
+        u.nombre_usuario,
+        u.email,
+        (SELECT i.ruta_imagen 
+         FROM imagen i 
+         WHERE i.id_anuncio = a.id_anuncio 
+         LIMIT 1) AS ruta_imagen
+            FROM 
+                anuncio a
+            LEFT JOIN 
+                usuario u ON a.id_usuario = u.id_usuario
+            WHERE 
+                a.estado = 'ACTIVO' AND
+                a.gusto >0
+            GROUP BY 
+                a.id_anuncio
+            ORDER BY 
+                a.gusto DESC, 
+                a.fecha_publicacion DESC 
+            LIMIT 9";
+    
+        $stmt = $this->db->prepare($sql);
+    
         try {
             $stmt->execute();
             // Obtener los resultados
             $anuncios = $stmt->fetchAll(PDO::FETCH_OBJ);
-            if (!empty($datos)) {
-                $nombre_categoria = $datos[0]->nombre_categoria; // Siempre obtendrás el nombre de la categoría
-            } else {
-                $nombre_categoria = 'Categoría desconocida';
-            }
         } catch (PDOException $e) {
             error_log("Error en destacados: " . $e->getMessage());
         }
+    
         return $anuncios;
     }
-
+    
 
 
     public function traerNuevos()
@@ -340,25 +336,32 @@ class anuncio
         $anuncios = false;
 
         $sql = "SELECT 
-            c.nombre_categoria, 
-            a.id_anuncio, 
-            a.titulo, 
-            a.ubicacion, 
-            a.fecha_publicacion,
-            a.gusto,  
-            u.nombre_usuario, 
-            u.email 
-        FROM 
-            categoria c
-        LEFT JOIN 
-            anuncio a ON a.id_categoria = c.id_categoria AND a.estado = 'ACTIVO'
-        LEFT JOIN 
-            usuario u ON a.id_usuario = u.id_usuario
-        WHERE 
-            a.fecha_publicacion >= DATE_SUB(NOW(), INTERVAL 7 DAY)
-        ORDER BY 
-            a.gusto DESC, 
-            a.id_anuncio DESC";
+                c.nombre_categoria, 
+                a.id_anuncio, 
+                a.titulo, 
+                a.ubicacion, 
+                a.fecha_publicacion,
+                a.gusto,  
+                u.nombre_usuario, 
+                u.email,
+                (SELECT i.ruta_imagen 
+                FROM imagen i 
+                WHERE i.id_anuncio = a.id_anuncio 
+                LIMIT 1) AS ruta_imagen
+                FROM 
+                categoria c
+                LEFT JOIN 
+                anuncio a ON a.id_categoria = c.id_categoria AND a.estado = 'ACTIVO'
+                LEFT JOIN 
+                usuario u ON a.id_usuario = u.id_usuario
+                WHERE 
+                a.fecha_publicacion >= DATE_SUB(NOW(), INTERVAL 7 DAY)
+                GROUP BY 
+                a.id_anuncio
+                ORDER BY 
+                a.gusto DESC, 
+                a.id_anuncio DESC;
+    ";
       
 
         $stmt =  $this->db->prepare($sql);
@@ -378,6 +381,66 @@ class anuncio
         return $anuncios;
     }
 
+
+    public function traerXFiltro($filtro, $valor) {
+        $anuncios = false;
+    
+        // Mapeo de filtros
+        $filtros = [
+            '1' => 'nombre_categoria',
+            '2' => 'titulo',
+            '3' => 'precio',
+            '4' => 'ubicacion'
+        ];
+    
+        if (!isset($filtros[$filtro])) {
+            return []; // Retorna un arreglo vacío si el filtro no es válido
+        }
+    
+        $columna = $filtros[$filtro];
+        $condicion = ($filtro == '3') ? "$columna = ?" : "$columna LIKE ?"; // Comparación exacta para precio, LIKE para los demás
+    
+        $sql = "
+            SELECT 
+                a.id_anuncio,
+                a.titulo,
+                a.descripcion,
+                a.precio,
+                a.ubicacion,
+                a.fecha_publicacion,
+                a.gusto,
+                u.nombre_usuario,
+                u.email,
+                (SELECT i.ruta_imagen 
+                 FROM imagen i 
+                 WHERE i.id_anuncio = a.id_anuncio 
+                 LIMIT 1) AS ruta_imagen
+            FROM 
+                anuncio a
+            LEFT JOIN 
+                usuario u ON a.id_usuario = u.id_usuario
+            WHERE 
+                a.estado = 'ACTIVO' AND
+                $condicion
+            GROUP BY 
+                a.id_anuncio
+            ORDER BY 
+                a.gusto DESC, 
+                a.fecha_publicacion DESC
+        ";
+    
+        try {
+            $stmt = $this->db->prepare($sql);
+            $param = ($filtro == '3') ? $valor : "%$valor%"; // Agrega comodines para LIKE
+            $stmt->execute([$param]);
+            $anuncios = $stmt->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $e) {
+            error_log("Error en traerXFiltro: " . $e->getMessage());
+        }
+    
+        return $anuncios;
+    }
+    
 
     public function salvar()
     {
@@ -457,6 +520,11 @@ class anuncio
 
         try {
             $stmt->execute(array($id_categoria, $titulo, $descripcion, $precio, $ubicacion, $usuario_modifico, $id_anuncio));
+            
+            
+            
+            
+            
             return true;
         } catch (PDOException $e) {
             error_log("Error al editar el anuncio: " . $e->getMessage());

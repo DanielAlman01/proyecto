@@ -17,12 +17,13 @@
             <?php if (isset($anuncio->id_anuncio))  { ?>
             
                 <div class="card">
-                    <img src="https://via.placeholder.com/300" alt="<?= htmlspecialchars($anuncio->titulo) ?>">
+                    <img src="<?= BASE_URL . $anuncio->ruta_imagen ?>" alt="<?= htmlspecialchars($anuncio->titulo) ?>">
                     <h3><?= htmlspecialchars($anuncio->titulo) ?></h3>
                     <p>Publicado por: <?= htmlspecialchars($anuncio->nombre_usuario) ?></p>
                     <p>Ubicación: <?= htmlspecialchars($anuncio->ubicacion) ?></p>
                     <p class="likes">Likes: <?= htmlspecialchars($anuncio->gusto) ?></p>
                     <p> <a href="<?= BASE_URL ?>anuncio/verDetalles&id=<?= $anuncio->id_anuncio; ?>" class="btn btn-gris"> VER MAS DETALLES </a></p>
+                
                 </div>
           
       

@@ -31,9 +31,6 @@ $v = 0;
 
 
 
-
-
-
                             <?php if (isset($identificacion) && $identificacion <> null) { ?>
                                 <li><a href="<?= BASE_URL ?>anuncio/gestionarMisAnuncios">Registrar Anuncio</a></li>
                             <?php } ?>
@@ -51,13 +48,8 @@ $v = 0;
 
 
                     <li>
-                        <a href="#">Buscar</a>
-                        <ul class="dropdown">
-                            <li><a href="#">Por Categoria</a></li>
-                            <li><a href="#">Por Titulo</a></li>
-                            <li><a href="#">Por Precio</a></li>
-                            <li><a href="#">Por Ubicación</a></li>
-                        </ul>
+                        <a href="<?= BASE_URL ?>anuncio/buscar">Buscar</a>
+                   
                     </li>
 
 
@@ -70,10 +62,10 @@ $v = 0;
                         <li>
                             <a href="#">Gestión ADMIN</a>
                             <ul class="dropdown">
-                                <li><a href="<?= BASE_URL ?>categoria/index">Categorias</a></li>
-                                <li><a href="#new">Anuncios</a></li>
-                                <li><a href="#new">Usuarios</a></li>
-                                <li><a href="#new">Ver Estadísticas</a></li>
+                                <li><a href="<?= BASE_URL ?>categoria/index">Crear Categorias</a></li>
+                                <li><a href="#new">Eliminar Anuncios</a></li>
+                                <li><a href="<?= BASE_URL ?>usuario/index">Inactivar Usuarios</a></li>
+                          
                                 <li><a href="#new">Ver Mensajes</a></li>
                             </ul>
                         </li>

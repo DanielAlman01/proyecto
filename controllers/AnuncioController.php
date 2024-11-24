@@ -351,42 +351,39 @@ class anuncioController
 
     public function verDetalles()
     {
-
-        // Verificar si el ID del anuncio está presente en el GET
+        require_once 'models/anuncio.php';
+    
         if (!isset($_GET['id'])) {
             $_SESSION['form_errores'] = ['id_anuncio' => 'No se proporcionó una categoría válida.'];
             require_once 'views/anuncios/todosLosAnunciosCategoria.php';
             exit;
         }
-
-        // Convertir el ID a entero
+    
         $id_anuncio = (int)$_GET['id'];
-
-        // Validar el ID
+    
         if ($id_anuncio <= 0) {
-            $_SESSION['form_errores'] = ['id_anuncio' => 'El ID de este Anuncio no es válido.'];
+            $_SESSION['form_errores'] = ['id_anuncio' => 'El ID de este anuncio no es válido.'];
             require_once 'views/anuncios/todosLosAnunciosCategoria.php';
             exit;
         }
-
-        // Obtener el anuncio 
-        $detalles = new anuncio(); // Instancia de la clase `Anuncio`
+    
+        $detalles = new anuncio();
         $detalles->setId_anuncio($id_anuncio);
+    
         $datos = $detalles->traerUnAnuncio();
-
-        $imagenes =  $detalles->traerImagenes($id_anuncio);
-
-
-        // Validar si se obtuvieron datos del  anuncio
+        $imagenes = $detalles->traerImagenes($id_anuncio); // Obtener imágenes
+    
         if (!$datos || empty($datos)) {
-            $_SESSION['form_errores'] = ['anuncios' => 'No se encontraron datos de este anuncios.'];
-            $datos = []; // Aseguramos que `$anuncios` sea un array vacío 
+            $_SESSION['form_errores'] = ['anuncios' => 'No se encontraron datos de este anuncio.'];
+            $datos = [];
         }
-
-        // Cargar la vista
+    
+        // Si no hay imágenes, asignar un array vacío para evitar errores
+        $imagenes = $imagenes ?? [];
+    
         require_once 'views/anuncios/detalles.php';
     }
-
+    
 
 
      public function elimAnuncio()
@@ -428,5 +425,27 @@ class anuncioController
 
      }
 
+
+     public function filtrarAnuncios() {
+        // Verificar si existen los datos enviados desde el formulario
+        if (isset($_POST['filtro']) && isset($_POST['valor'])) {
+            $filtro = $_POST['filtro'];
+            $valor = $_POST['valor'];
+    
+            // Llamar al modelo para obtener los resultados filtrados
+            $anuncio = new anuncio();
+            $resultados = $anuncio->traerXFiltro($filtro, $valor);
+    
+            // Enviar los resultados a la vista
+            require_once("views/anuncios/buscar.php");
+        } else {
+            echo "Faltan parámetros para realizar el filtro.";
+        }
+    }
+    
+
+    public function buscar(){
+    require_once("views/anuncios/buscar.php");
+}
 
 }

@@ -150,6 +150,25 @@ class usuario
     }
 
 
+    public function getUsuarios()
+    {
+        $usuarios = false;
+        $sql = "SELECT * FROM  usuario ORDER BY id_usuario DESC";
+        $stmt = $this->db->prepare($sql);
+
+        try {
+            $stmt->execute();
+            $usuarios = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+            if (!empty($usuarios)) {
+                return $usuarios;
+            }
+        } catch (PDOException $e) {
+            error_log("Error: " . $e->getMessage());
+        }
+        $usuarios = false;
+    }
+
 
     //Métodos para guardar datos
     public function salvar()
@@ -211,4 +230,26 @@ class usuario
             return false;
         }
     }
+
+public function cambiarEstado($e,$i, $m){
+    $id_usuario = $i;
+    $estado = $e;
+    $id_modifico = $m;
+
+    $sql = "UPDATE usuario SET estado_usuario=?, usuario_modifico=? WHERE id_usuario=?";
+
+    $stmt = $this->db->prepare($sql);
+
+    try {
+        $stmt->execute(array($estado, $id_modifico, $id_usuario));
+        
+    
+        return true;
+    } catch (PDOException $e) {
+        error_log("Error al cambiar el estado del usuario: " . $e->getMessage());
+        return false;
+    }
+}
+
+
 }
