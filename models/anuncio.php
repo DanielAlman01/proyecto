@@ -578,4 +578,48 @@ class anuncio
 
 
 
+    public function bajarAnuncio()
+    {
+
+        $id_anuncio = $this->getId_anuncio();
+        $estado = $this->getEstado();
+        $usuario_modifico = $this->getUsuario_modifico();
+
+        $sql = "UPDATE anuncio SET estado=?, usuario_modifico=? WHERE id_anuncio=?";
+
+        $stmt = $this->db->prepare($sql);
+
+        try {
+            $stmt->execute(array($estado, $usuario_modifico, $id_anuncio));
+        
+            return true;
+        } catch (PDOException $e) {
+            error_log("Error al bajar el anuncio: " . $e->getMessage());
+            return false;
+        }
+    }
+
+
+    public function recuperarAnuncio()
+    {
+
+        $id_anuncio = $this->getId_anuncio();
+        $estado = $this->getEstado();
+        $usuario_modifico = $this->getUsuario_modifico();
+
+        $sql = "UPDATE anuncio SET estado=?, usuario_modifico=? WHERE id_anuncio=?";
+
+        $stmt = $this->db->prepare($sql);
+
+        try {
+            $stmt->execute(array($estado, $usuario_modifico, $id_anuncio));
+        
+            return true;
+        } catch (PDOException $e) {
+            error_log("Error al recuperar el anuncio: " . $e->getMessage());
+            return false;
+        }
+    }
+
+
 }

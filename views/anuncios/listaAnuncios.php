@@ -40,15 +40,13 @@
                 <td><?php $fecha = new Datetime($anun->fecha_publicacion);
                     echo $fecha->format('d-m-Y'); ?></td>
    <td><?= $anun->estado; ?></td>
-                <td> <a  onclick="return confirm('¿Estás seguro de que deseas eliminar el anuncio: <?= $anun->titulo; ?>?');" href="<?= BASE_URL ?>anuncio/elimAnuncio&id=<?= $anun->id_anuncio;  ?>" class="btn btn-rojo">ELIMINAR</a></td>
-          
-
-                <?php if($anu->estado_usuario === "ACTIVO"){ ?>
-                    <a href="<?= BASE_URL ?>usuario/cambiarEstado&i=<?= $usu->id_usuario; ?>&e=INACTIVO" class='btn btn-rojo'>INACTIVAR</a>
-                 <?php }elseif($usu->estado_usuario === "INACTIVO") { ?>
-                    <a href="<?= BASE_URL ?>usuario/cambiarEstado&i=<?= $usu->id_usuario; ?>&e=ACTIVO" class='btn btn-verde'>ACTIVAR</a>
+                <td> 
+                <?php if($anun->estado === "ACTIVO"){ ?>
+                    <a href="<?= BASE_URL ?>anuncio/bajarAnuncio&id=<?= $anun->id_anuncio; ?>" class='btn btn-rojo'>BAJAR ANUNCIO</a>
+                 <?php }elseif($anun->estado === "ELIMINADO") { ?>
+                    <a href="<?= BASE_URL ?>anuncio/recuperarAnuncio&id=<?= $anun->id_anuncio; ?>" class='btn btn-verde'>RECUPERAR ANUNCIO</a>
                      <?php } ?>
-                     </td> </tr>
+                     </td>
 
 
 
