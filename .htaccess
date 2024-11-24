@@ -1,24 +1,15 @@
-# Activar el motor de reescritura de URLs
+<ifModule mod_rewrite.c>
+
+#Se activa el Rewrite
 RewriteEngine On
 
-# Establecer la base para las reescrituras al subdirectorio del proyecto
-# Ajusta esto según la ubicación de tu proyecto en el servidor
-RewriteBase /UTP/repositorio/PROYECTO/
+ErrorDocument 404 http://localhost/proyecto_clasificados/error/
 
-# Permitir el acceso directo a los archivos en el directorio public
-# Esto evita que las solicitudes a archivos CSS, JS, imágenes, etc., sean redirigidas
-RewriteRule ^public/ - [L]
+#No se podrá llamar a archivos en la URL, solo escribir url válidas
+    RewriteCond %{SCRIPT_FILENAME} !-d
+    RewriteCond %{SCRIPT_FILENAME} !-f
 
-# Las siguientes condiciones se aplican solo si el archivo o directorio solicitado no existe físicamente
-# Si el archivo solicitado no existe
-RewriteCond %{REQUEST_FILENAME} !-f
-# Si el directorio solicitado no existe
-RewriteCond %{REQUEST_FILENAME} !-d
+#Esto es reescribir la url y que le de este formato
+   RewriteRule ^([^/]+)/([^/]+)$ index.php?controller=$1&action=$2 [QSA,L]
 
-# Redirigir todas las demás solicitudes a index.php
-# La bandera QSA añade cualquier cadena de consulta de la solicitud original
-# La bandera L indica que esta es la última regla a procesar
-RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
-
-# Nota: Este archivo .htaccess debe estar en el directorio raíz de tu proyecto,
-# no en el directorio public o cualquier otro subdirectorio.
+</ifModule>
