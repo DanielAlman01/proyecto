@@ -6,7 +6,12 @@ class usuarioController
 {
     public function index()
     {
-        echo "Controlador Usuario No existe - Accion Index";
+        //Esto es para listar e inhabilitar usuario
+        utils::isAdmin();  //Verificamos si es usuario tipo ADMIN
+        $usuario = new usuario();
+        $usuarios = $usuario->getUsuarios();
+        //Obtenemos todos ls usuarios 
+        require_once 'views/usuarios/index.php';
     }
 
 
@@ -137,4 +142,17 @@ class usuarioController
         session_destroy();
         header("Location: " . BASE_URL);
     }
+
+public function cambiarEstado(){
+    if( isset($_GET['e']) && isset($_GET['i']) &&  utils::isAdmin()){
+        $estado = $_GET['e'];
+        $id_usuario = $_GET['i'];
+        $modifica = $_SESSION['identidad']->id_usuario;
+        $usuario = new usuario();
+        $usuario->cambiarEstado($estado, $id_usuario, $modifica);
+        header("Location: " . BASE_URL.'usuario/index');
+    }
+
+}
+
 }

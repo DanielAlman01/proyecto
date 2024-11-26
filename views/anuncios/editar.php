@@ -21,7 +21,11 @@ $errores = isset($_SESSION['form_errores']) ? $_SESSION['form_errores'] : [];
         <input type="hidden" name="usuario_modifico" value="<?= htmlspecialchars($_SESSION['identidad']->id_usuario) ?>">
         <input type="hidden" name="id_anuncio" value="<?= isset($_GET['id']) ? htmlspecialchars($_GET['id']) :  htmlspecialchars($formData['id_anuncio'])  ?>">
        
-  
+        <?php
+            //var_dump($categoriasAnuncios);
+            
+            ?>
+
         <label for="id_categoria">Categoría:</label>
         <select name="id_categoria" id="id_categoria" required>
            
@@ -57,7 +61,7 @@ $errores = isset($_SESSION['form_errores']) ? $_SESSION['form_errores'] : [];
             <?php if (!empty($imagenes)) : ?>
                 <?php foreach ($imagenes as $imagen) : ?>
                     <div class="imagen-item">
-                        <img src="<?= BASE_URL . 'uploads/' . htmlspecialchars($imagen->ruta_imagen) ?>" alt="Imagen del anuncio" width="100">
+                    <img src="<?= BASE_URL . $imagen->ruta_imagen ?>" alt="<?= htmlspecialchars($imagen->titulo) ?>" width="200">
                         <label>
                             <input type="checkbox" name="eliminar_imagenes[]" value="<?= htmlspecialchars($imagen->id_imagen) ?>"> Eliminar
                         </label>

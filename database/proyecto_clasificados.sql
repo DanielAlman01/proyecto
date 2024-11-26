@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-11-2024 a las 04:33:22
+-- Tiempo de generación: 24-11-2024 a las 10:58:00
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -167,11 +167,12 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre_usuario`, `apellido_usuario`, `email`, `clave`, `tipo_usuario`, `estado_usuario`, `fecha_creacion`, `ultima_modificacion`, `usuario_modifico`) VALUES
-(10, 'Ghadafy', 'Neville', 'kadaneville@gmail.com', '$2y$10$nJyfK55cjRTDs8977nU3T.e2tz1z86HCdIBjGzK1kny.vzGWJOxGe', 'ADM', 'ACTIVO', '2024-11-03 23:32:11', '2024-11-04 15:24:42', NULL),
-(11, 'marysabel', 'cernchiaro', 'marytza13n@gmail.com', '$2y$10$im6aYvJslS1pWsdvEb6WdeUnrlO5g7o9JG4s6UQtJGiArzyhhdt5.', 'USUAL', 'ACTIVO', '2024-11-04 12:30:56', NULL, NULL),
-(12, 'Anthony', 'Martinez', 'anthony@gmail.com', '$2y$10$kslnDZMS6UiNK5sstOmZEuCxiNug56t3IqunQYn89kY9sWQBhqema', 'USUAL', 'ACTIVO', '2024-11-04 12:39:42', NULL, NULL),
-(13, 'prueba', 'prueba', 'pp@gmail.com', '$2y$10$.4FZq.peRPXVeB0JUwHoIODStY0caOrfQmnoIxpNzLvxwOjqaZ2eG', 'USUAL', 'ACTIVO', '2024-11-20 18:15:40', NULL, NULL),
-(14, 'Shaiel', 'Neville', 'sn@gmail.com', '$2y$10$oUHWu5qIph8RuvKr28o3Yue6lct0GxAXrYWS7yiQf/Z5Q8jOzxtt2', 'USUAL', 'ACTIVO', '2024-11-23 07:53:22', NULL, NULL);
+(10, 'Ghadafy', 'Neville', 'kadaneville@gmail.com', '$2y$10$nJyfK55cjRTDs8977nU3T.e2tz1z86HCdIBjGzK1kny.vzGWJOxGe', 'ADM', 'ACTIVO', '2024-11-03 23:32:11', '2024-11-24 03:43:55', 10),
+(11, 'marysabel', 'cernchiaro', 'marytza13n@gmail.com', '$2y$10$im6aYvJslS1pWsdvEb6WdeUnrlO5g7o9JG4s6UQtJGiArzyhhdt5.', 'USUAL', 'ACTIVO', '2024-11-04 12:30:56', '2024-11-24 03:44:05', 10),
+(12, 'Anthony', 'Martinez', 'anthony@gmail.com', '$2y$10$kslnDZMS6UiNK5sstOmZEuCxiNug56t3IqunQYn89kY9sWQBhqema', 'USUAL', 'ACTIVO', '2024-11-04 12:39:42', '2024-11-24 04:05:22', 10),
+(13, 'prueba', 'prueba', 'pp@gmail.com', '$2y$10$.4FZq.peRPXVeB0JUwHoIODStY0caOrfQmnoIxpNzLvxwOjqaZ2eG', 'USUAL', 'ACTIVO', '2024-11-20 18:15:40', '2024-11-24 04:05:30', 10),
+(14, 'Shaiel', 'Neville', 'sn@gmail.com', '$2y$10$oUHWu5qIph8RuvKr28o3Yue6lct0GxAXrYWS7yiQf/Z5Q8jOzxtt2', 'USUAL', 'INACTIVO', '2024-11-23 07:53:22', '2024-11-24 04:10:26', 10),
+(15, 'Admin', 'Admin', 'aa@gmail.com', '$2y$10$HN2mhbc0piU3nOZLop6bsuz/dVE8GUg9XF4WV4kn/c2moo9/fdqKO', 'USUAL', 'ACTIVO', '2024-11-24 04:50:05', NULL, NULL);
 
 --
 -- Índices para tablas volcadas
@@ -216,7 +217,8 @@ ALTER TABLE `registro_visitas`
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`id_usuario`);
+  ADD PRIMARY KEY (`id_usuario`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -256,7 +258,7 @@ ALTER TABLE `registro_visitas`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Restricciones para tablas volcadas
