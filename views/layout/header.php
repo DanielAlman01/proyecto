@@ -32,13 +32,11 @@ $v = 0;
 
 
                             <?php if (isset($identificacion) && $identificacion <> null) { ?>
-                                <li><a href="<?= BASE_URL ?>anuncio/gestionarMisAnuncios">Registrar Anuncio</a></li>
+                                <li class="dropdown-anuncios"><a href="<?= BASE_URL ?>anuncio/gestionarMisAnuncios">Registrar Anuncio</a></li>
                             <?php } ?>
 
-
-
                             <?php if (isset($identificacion)) { ?>
-                                <li><a href="<?= BASE_URL ?>categoria/verCategoriasAnuncios">Ver Anuncios </a></li>
+                                <li class="dropdown-anuncios"><a href="<?= BASE_URL ?>categoria/verCategoriasAnuncios">Ver Anuncios </a></li>
                             <?php } ?>
 
 
@@ -83,8 +81,8 @@ $v = 0;
                     <?php else : ?>
                         <li>
                             <a href="#"><?= "" . $identificacion->nombre_usuario; ?></a>
-                            <ul class="dropdown">
-                                <li> <a href="<?= BASE_URL ?>usuario/cerrarSession">Cerrar Sesión</a></li>
+                            <ul class="dropdown imaginario">
+                                <li class="dropdown-anuncios"> <a href="<?= BASE_URL ?>usuario/cerrarSession">Cerrar Sesión</a></li>
                             </ul>
                         </li>
                     <?php endif; ?>

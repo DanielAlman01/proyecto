@@ -12,12 +12,12 @@
         /* Fuentes - pc */
         --fuenta-titel: 2.5rem;
         --fuente-subtitel:1.8rem;
-        --fuente-parrafo: 1.3rem;
+        --fuente-parrafo: 1rem;
 
         /* Fuentes - movil */
         --fuenta-titel-mv: 2.8rem;
         --fuente-subtitel-mv:1.8rem;
-        --fuente-parrafo-mv: 1.4rem;
+        --fuente-parrafo-mv: 1.2rem;
 
     /* Famila de texto */
     --text-family-principla: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -125,29 +125,76 @@ nav a {
 nav ul .dropdown {
     display: none;
     position: absolute;
-    background: var(--color-trasparente);
+    background-color: var(--color-trasparente);
     top: 100%;
     left: 0;
     min-width: 200px;
     border-radius: 5px;
+    font-size: 14px;
     padding: 0;
     list-style: none;
     z-index: 10;
+    padding-top: 10px;
+    gap: 10;
+}
+
+.dropdown{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 nav ul .dropdown li a {
-    padding: 10px;
-    color: #fff;
+    padding: 10px 0;
+    color: var(--color-azul);
 }
 
 nav ul .dropdown li a:hover {
     background-color: var(--color-trasparente);
 }
 
+.dropdown-anuncios{
+    background-color: var(--color-blanco);
+    margin-top: 2px;
+    margin-bottom: 10px;
+    padding: 0 20px;
+    font-size: var(--fuente-parrafo);
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
 /* Mantener submenú abierto con :hover y :focus-within */
 nav ul li:hover>.dropdown,
 nav ul li:focus-within>.dropdown {
     display: block;
+}
+
+.dropdown li a {
+    padding: 10px;
+    color: #fff;
+    display: block;
+}
+
+.dropdown li a:hover {
+    background-color: #555;
+}
+
+/* Estilo para mostrar el submenú */
+.show {
+    display: block;
+    /* Muestra el submenú */
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+}
+
+.espacio-abajo{
+    margin-bottom: 20px;
 }
 
 /* ------------------------------------------------------------------ HEADER MOVIL ------------------------------------------------------------------- */
@@ -203,15 +250,6 @@ nav ul li:focus-within>.dropdown {
         position: static;
     }
 }
-
-
-
-
-
-
-
-
-
 
 
 /* ------------------------------------------------------------------ BOTONES DE LA WEB  ------------------------------------------------------------------- */
@@ -276,11 +314,8 @@ nav ul li:focus-within>.dropdown {
 }
 
 .btn-azul {
-    background-color: #007bff; /* Color de fondo del botón (azul) */
-    background-color: #0056b3; /* Cambia el color de fondo al pasar el ratón */
-    background-color: #004085; /* Color más oscuro al hacer clic */
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Agregar un resplandor azul */
-
+    background-color: var(--color-azul);
+    padding: 10px 30px;
 }
 
 
@@ -343,68 +378,6 @@ nav ul li:focus-within>.dropdown {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-/* ------------------------------------------------------------------ SUBMENU ESTILOS  ------------------------------------------------------------------- */
-
-/* Estilos para el submenú */
-.dropdown {
-    display: none;
-    /* Oculta el submenú por defecto */
-    position: absolute;
-    background: #444;
-    top: 100%;
-    left: 0;
-    min-width: 200px;
-    border-radius: 5px;
-    padding: 0;
-    list-style: none;
-    z-index: 10;
-}
-
-.dropdown li a {
-    padding: 10px;
-    color: #fff;
-    display: block;
-}
-
-.dropdown li a:hover {
-    background-color: #555;
-}
-
-/* Estilo para mostrar el submenú */
-.show {
-    display: block;
-    /* Muestra el submenú */
-}
-
-main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 0px;
-}
-
-
-
-
-
-
-
-
-
-
-
 /* ------------------------------------------------------------------ DISEÑO DE LAS TABLAS  ------------------------------------------------------------------- */
 
 
@@ -425,7 +398,7 @@ main {
 
 /* Encabezados */
 .tabla_info th {
-    background-color: #333;
+    background-color: var(--color-negro);
     color: #ffffff;
     font-weight: bold;
     padding: 15px;
@@ -768,6 +741,14 @@ footer {
     /* Un tono ligeramente más claro en hover */
 }
 
+.secction-getion-anuncio{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5vh 0;
+    width: 100%;
+}
 
 .alert_green {
     color: green;
@@ -898,6 +879,7 @@ footer {
     justify-content: center;
     align-items: center;
     min-height: 70vh;
+    min-width: 600px;
     padding: 20px;
     background-color: #f4f4f9;
 }
