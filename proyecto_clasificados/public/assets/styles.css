@@ -1,0 +1,1022 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f9;
+}
+
+
+html,
+body {
+    height: 100%;
+    /* Asegura que el body ocupe el 100% de la altura de la ventana */
+    margin: 0;
+    /* Elimina el margen por defecto */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    /* Coloca los hijos en una columna */
+    min-height: 100vh;
+    /* Hace que el contenedor tenga al menos la altura de la ventana */
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+}
+
+h1 {
+    display: inline;
+}
+
+
+/* Estilo del contenedor del menú */
+nav {
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 15px 20px;
+    display: block;
+}
+
+/* Estilos del submenú */
+nav ul .dropdown {
+    display: none;
+    position: absolute;
+    background: #444;
+    top: 100%;
+    left: 0;
+    min-width: 200px;
+    border-radius: 5px;
+    padding: 0;
+    list-style: none;
+    z-index: 10;
+}
+
+nav ul .dropdown li a {
+    padding: 10px;
+    color: #fff;
+}
+
+nav ul .dropdown li a:hover {
+    background-color: #555;
+}
+
+/* Mantener submenú abierto con :hover y :focus-within */
+nav ul li:hover>.dropdown,
+nav ul li:focus-within>.dropdown {
+    display: block;
+}
+
+
+/*Estilo personalizados para algunos anclas*/
+/* Clase para enlaces estilizados */
+.btn-link {
+    display: inline-block;
+    padding: 10px 15px;
+    margin: 10px 0;
+    color: #fff;
+    background-color: #333;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Efecto hover */
+.btn-link:hover {
+    background-color: #555;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Efecto de enfoque (foco) */
+.btn-link:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}
+
+
+/* Estilo del contenedor del menú */
+nav {
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+nav ul li {
+    position: relative;
+    margin-right: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 15px 20px;
+    display: block;
+}
+
+/* Estilos para el submenú */
+.dropdown {
+    display: none;
+    /* Oculta el submenú por defecto */
+    position: absolute;
+    background: #444;
+    top: 100%;
+    left: 0;
+    min-width: 200px;
+    border-radius: 5px;
+    padding: 0;
+    list-style: none;
+    z-index: 10;
+}
+
+.dropdown li a {
+    padding: 10px;
+    color: #fff;
+    display: block;
+}
+
+.dropdown li a:hover {
+    background-color: #555;
+}
+
+/* Estilo para mostrar el submenú */
+.show {
+    display: block;
+    /* Muestra el submenú */
+}
+
+main {
+    flex: 1;
+    padding: 20px 20px;
+
+}
+
+
+/*Estilo para las tablas*/
+/* Tabla centrada y estilizada */
+.tabla_info {
+    width: 80%;
+    /* Ajusta el ancho de la tabla */
+    margin: 20px auto;
+    /* Centra la tabla */
+    border-collapse: collapse;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+/* Encabezados */
+.tabla_info th {
+    background-color: #333;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 15px;
+    text-align: left;
+    font-size: 1.1em;
+}
+
+/* Filas y celdas */
+.tabla_info td {
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 1em;
+    color: #555;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Filas alternas */
+.tabla_info tr:nth-child(even) {
+    background-color: #f4f4f9;
+}
+
+/* Hover sobre filas */
+.tabla_info tr:hover {
+    background-color: #e6e6e6;
+}
+
+/* Mensaje de 'No hay categorías registradas' */
+.tabla_info td[colspan="2"] {
+    text-align: center;
+    font-style: italic;
+    color: #888;
+    padding: 20px;
+    font-size: 1em;
+}
+
+/* Pequeña animación para el hover */
+.tabla_info tr:hover {
+    background-color: #e1e1e1;
+    transition: background-color 0.2s ease-in-out;
+}
+
+
+
+
+.section {
+    padding: 20px;
+}
+
+
+/* Estilos del contenedor de tarjetas */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* Centra las tarjetas en la página */
+    margin: 0 auto;
+    /* Aumenta el margen a los lados para alejar las tarjetas de los bordes */
+    padding: 10px;
+    /* Añade un padding para evitar bordes muy ajustados */
+}
+
+
+/* Estilos para las tarjetas */
+.card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    /* Reduce el padding interno de la tarjeta */
+    margin: 5px;
+    /* Mantiene el margen entre las tarjetas */
+    flex: 1 1 30%;
+    /* Mantiene 3 tarjetas por fila */
+    max-width: 300px;
+    /* Ajustar el tamaño máximo de la tarjeta */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card img {
+    width: 100%;
+    /* Hace que la imagen ocupe todo el ancho de la tarjeta */
+    height: auto;
+    /* Mantiene la relación de aspecto */
+    border-radius: 8px 8px 0 0;
+    /* Bordes redondeados en la parte superior */
+}
+
+.card h3 {
+    font-size: 1.1em;
+    /* Ajusta el tamaño de fuente del título */
+}
+
+.card p {
+    font-size: 0.9em;
+    /* Ajusta el tamaño de fuente del contenido */
+    margin: 5px 0;
+}
+
+.card .likes {
+    font-size: 0.8em;
+    /* Tamaño de fuente del contador de likes */
+    color: #888;
+}
+
+/* Efecto al pasar el mouse */
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/*
+
+.login-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.login-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+    width: 100%;
+}
+
+*/
+
+
+/* Estilo base para el enlace que se parece a un botón */
+.btn {
+    display: inline-block; /* Para que el enlace se comporte como un bloque pero no ocupe toda la línea */
+    padding: 10px 20px; /* Espaciado interno (tamaño del botón) */
+    color: #fff; /* Color del texto (blanco) */
+    text-align: center; /* Centrar el texto dentro del enlace */
+    text-decoration: none; /* Elimina el subrayado predeterminado de los enlaces */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 14px; /* Tamaño de la fuente */
+    font-weight:600; /* Hacer el texto en negrita */
+    transition: background-color 0.3s ease, transform 0.2s; /* Efectos de transición */
+}
+
+/* Efecto hover (cuando el ratón pasa sobre el botón) */
+.btn:hover {
+    
+    transform: scale(1.05); /* Efecto de agrandamiento suave */
+}
+
+/* Efecto active (cuando el botón es presionado) */
+.btn:active {
+    
+    transform: scale(1); /* Restablecer el tamaño cuando se presiona */
+}
+
+/* Efecto focus (cuando el botón tiene el foco, por ejemplo, con el teclado) */
+.btn:focus {
+    outline: none; /* Eliminar el contorno predeterminado al dar foco */
+    
+}
+
+.btn-azul {
+    background-color: #007bff; /* Color de fondo del botón (azul) */
+    background-color: #0056b3; /* Cambia el color de fondo al pasar el ratón */
+    background-color: #004085; /* Color más oscuro al hacer clic */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Agregar un resplandor azul */
+
+}
+
+
+.btn-rojo {
+    background-color: #f45516; /* Color de fondo del botón (azul) */
+    background-color: #f50606; /* Cambia el color de fondo al pasar el ratón */
+    background-color: #851200; /* Color más oscuro al hacer clic */
+    box-shadow: 0 0 5px rgba(255, 30, 0, 0.5); /* Agregar un resplandor azul */
+
+}
+
+
+.btn-gris {
+    background-color: #aca39f; /* Color de fondo del botón (azul) */
+    background-color: #888686; /* Cambia el color de fondo al pasar el ratón */
+    background-color: #605e5e; /* Color más oscuro al hacer clic */
+    box-shadow: 0 0 5px rgba(28, 91, 28, 0.5); /* Agregar un resplandor azul */
+
+}
+
+.btn-verde {
+    background-color: #22631f; /* Color de fondo del botón (azul) */
+    background-color: #1d6127; /* Cambia el color de fondo al pasar el ratón */
+    background-color: #134213; /* Color más oscuro al hacer clic */
+    box-shadow: 0 0 5px rgba(24, 47, 19, 0.5); /* Agregar un resplandor azul */
+
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background: #333;
+    color: white;
+}
+
+
+
+/* Estilos para botones de like */
+/*
+.like-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    color: #888;
+}
+
+.like-btn:hover {
+    color: #333;
+}
+*/
+
+.like-button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.like-button:hover {
+    background-color: #0056b3;
+}
+.like-count {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+
+
+
+/* Contenedor principal del formulario */
+.registration-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    /*background-color: #f4f4f9;*/
+}
+
+
+
+.login-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+    /*background-color: #f4f4f9;*/
+}
+
+
+
+.registration-form,
+.login-form {
+    display: flex;
+    flex-direction: column;
+    /* Alinea los elementos en una columna */
+    align-items: center;
+    /* Centra los campos en el formulario */
+    background-color: #ffffff;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    gap: 15px;
+    /* Espacio entre los elementos */
+}
+
+/* Estilos para el título */
+.registration-form h2,
+.login-form h2 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* Estilos para los labels */
+.registration-form label,
+.login-form label {
+    font-size: 1em;
+    font-weight: bold;
+    color: #555;
+    align-self: flex-start;
+    /* Alinea el label a la izquierda del campo */
+}
+
+/* Campos de entrada */
+.registration-form input[type="text"],
+.registration-form input[type="email"],
+.registration-form input[type="password"],
+.login-form input[type='text'],
+.login-form input[type='email'],
+.login-form input[type='password'] {
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    /* Hace que el campo ocupe el ancho completo del formulario */
+    transition: border-color 0.3s;
+}
+
+.registration-form input[type="text"]:focus,
+.registration-form input[type="email"]:focus,
+.registration-form input[type="password"]:focus,
+.login-form input[type='text']:focus,
+.login-form input[type='email']:focus,
+.login-form input[type='password']:focus {
+    border-color: #8fa6b2;
+    outline: none;
+}
+
+/* Estilos para el botón */
+.registration-form button,
+.login-form button {
+    padding: 10px;
+    background-color: #333;
+    /* Color de fondo del botón */
+    color: #ffffff;
+    /* Color del texto en blanco para contraste */
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.registration-form button:hover,
+.login-form button:hover {
+    background-color: #555;
+    /* Un tono ligeramente más claro en hover */
+}
+
+
+.alert_green {
+    color: green;
+}
+
+.alert_red {
+    color: red;
+}
+
+
+
+
+/* Contenedor principal del formulario */
+.categoria-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    /* Altura mínima para centrar verticalmente */
+}
+
+
+/* Estilos para el formulario de categoría */
+.categoria-form {
+    display: flex;
+    flex-direction: column;
+    /* Alinea los elementos en una columna */
+    align-items: center;
+    /* Centra los campos en el formulario */
+    padding: 20px 30px;
+    /* Espaciado interno */
+    border-radius: 8px;
+    /* Bordes redondeados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /* Sombra sutil */
+    max-width: 400px;
+    /* Ancho máximo */
+    width: 100%;
+    /* Ancho completo */
+    gap: 15px;
+    /* Espacio entre los elementos */
+    background-color: #ffffff;
+    /* Color de fondo blanco */
+}
+
+/* Estilos para el título */
+.categoria-form h2 {
+    font-size: 1.5em;
+    /* Tamaño del texto */
+    color: #333;
+    /* Color del texto */
+    margin-bottom: 15px;
+    /* Espaciado inferior */
+    text-align: center;
+    /* Centrar el texto */
+}
+
+/* Estilos para los labels */
+.categoria-form label {
+    font-size: 1em;
+    /* Tamaño del texto */
+    color: #555;
+    font-weight: bold;
+    /* Color del texto */
+    align-self: flex-start;
+    /* Alinea el label a la izquierda del campo */
+}
+
+/* Campos de entrada */
+.categoria-form input[type="text"] {
+    padding: 10px;
+    /* Espaciado interno */
+    font-size: 1em;
+    /* Tamaño de la fuente */
+    border: 1px solid #ccc;
+    /* Borde gris claro */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    width: 100%;
+    /* Hace que el campo ocupe el ancho completo del formulario */
+    transition: border-color 0.3s;
+    /* Transición suave para el borde */
+}
+
+/* Estilo al enfocar el campo de entrada */
+.categoria-form input[type="text"]:focus {
+    border-color: #8fa6b2;
+    /* Color del borde al enfocar */
+    outline: none;
+    /* Eliminar el contorno predeterminado */
+}
+
+/* Estilos para el botón */
+.categoria-form button {
+    padding: 10px;
+    /* Espaciado interno */
+    background-color: #333;
+    /* Color de fondo del botón */
+    color: #ffffff;
+    /* Color del texto en blanco para contraste */
+    border: none;
+    /* Sin borde */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    font-size: 1em;
+    /* Tamaño de fuente */
+    cursor: pointer;
+    /* Cambiar el cursor al pasar */
+    width: 100%;
+    /* Ancho completo del botón */
+    transition: background-color 0.3s;
+    /* Transición suave para el fondo */
+}
+
+/* Estilo para el botón al pasar el mouse */
+.categoria-form button:hover {
+    background-color: #555;
+    /* Un tono ligeramente más claro en hover */
+}
+
+
+
+/*Estilo para el formulario de contacto*/
+/* Estilos generales para la sección */
+
+.contact-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    padding: 20px;
+    background-color: #f4f4f9;
+}
+
+.contact-form {
+    background-color: #ffffff;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form h2 {
+    text-align: center;
+    color: #333;
+}
+
+.contact-form label {
+    color: #555;
+    font-weight: bold;
+
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.contact-form button {
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.contact-form button:hover {
+    background-color: #555;
+}
+
+
+/*Estilo para formulario de registro de anuncios*/
+.contact-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    padding: 20px;
+    background-color: #f4f4f9;
+}
+
+.contact-form {
+    background-color: #ffffff;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form h2 {
+    text-align: center;
+    color: #333;
+}
+
+.contact-form label {
+    color: #555;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="number"],
+.contact-form select,
+.contact-form textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.contact-form button {
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.contact-form button:hover {
+    background-color: #555;
+}
+
+
+#anuncio-detalle .card-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+#anuncio-detalle .card {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    max-width: 500px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#anuncio-detalle .card img {
+    width: 70%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+#anuncio-detalle h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+#anuncio-detalle p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+#anuncio-detalle p strong {
+    font-weight: bold;
+}
+
+
+/* CSS tabla para mensajes*/
+/* Contenedor de la tabla */
+/* Estilo para la sección de mensajes */
+.mensaje-container {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.mensaje-title {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Tabla de mensajes */
+.mensaje-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.mensaje-table th, .mensaje-table td {
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.mensaje-table th {
+    background-color: #007bff;
+    color: white;
+}
+
+.mensaje-table td {
+    background-color: #f4f4f4;
+}
+
+.mensaje-row:nth-child(even) {
+    background-color: #fafafa;
+}
+
+.mensaje-row:hover {
+    background-color: #f1f1f1;
+}
+
+/* Estilo para el mensaje de "no hay mensajes" */
+.no-messages {
+    color: #888;
+    font-style: italic;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Estilo para el formulario de enviar mensaje */
+.mensaje-form-container {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.mensaje-form-title {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.mensaje-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.mensaje-textarea {
+    width: 100%;
+    height: 50px;
+    padding: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+}
+
+.mensaje-submit-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.mensaje-submit-button:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+
+
+
+
+/* Responsividad */
+/* Responsividad para pantallas pequeñas */
+/* Clase opcional para ajustar tamaño en pantallas más pequeñas */
+@media (max-width: 480px) {
+    .btn-link {
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+}
+
+
+/* Diseño responsivo para pantallas pequeñas */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        width: 100%;
+    }
+
+    nav ul .dropdown {
+        position: static;
+    }
+}
+
+@media (max-width: 480px) {
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+        table {
+            font-size: 0.9em;
+        }
+
+        th,
+        td {
+            padding: 10px;
+        }
+    }
+
+    .registration-form {
+        padding: 15px 20px;
+        box-shadow: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-form {
+        padding: 15px 20px;
+        box-shadow: none;
+    }
+}
+
+
+
+/* Media queries para dispositivos medianos (tabletas) */
+@media (max-width: 768px) {
+    .card {
+        width: calc(50% - 20px);
+        /* Muestra 2 tarjetas por fila */
+    }
+
+    nav ul {
+        flex-direction: column;
+        /* Coloca el menú en columna */
+        align-items: center;
+    }
+}
+
+/* Media queries para dispositivos pequeños (teléfonos) */
+@media (max-width: 480px) {
+    .card {
+        width: calc(100% - 20px);
+        /* Muestra 1 tarjeta por fila */
+    }
+
+    .dropdown {
+        position: static;
+        /* Ajusta el menú desplegable para que se muestre en una columna */
+    }
+
+    nav ul {
+        flex-direction: column;
+        /* Menú en columna */
+        gap: 5px;
+    }
+
+    nav ul li {
+        margin-right: 0;
+    }
+}
