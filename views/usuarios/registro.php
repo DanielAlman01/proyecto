@@ -1,4 +1,7 @@
-<h2>Registro de Usuario</h2>
+<div class="sec-titel_prin">
+    <h2>Registro de Usuario</h2>
+</div>
+
 
 <?php if (isset($_SESSION['registro']) && $_SESSION['registro'] === "Completo") : ?>
     <strong class="alert_green">Registro completado correctamente</strong>

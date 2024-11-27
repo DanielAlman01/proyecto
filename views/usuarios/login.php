@@ -1,4 +1,6 @@
-<h2>Iniciar Sesión</h2>
+<div class="sec-titel_prin">
+    <h2>Iniciar Sesión</h2>
+</div>
 
 <?php if (isset($_SESSION['error_login']) && $_SESSION['error_login'] === 'Identificación fallida...') : ?>
 

@@ -5,22 +5,27 @@
         <div class="card-container">
             <div class="card">
                 <h3><?= htmlspecialchars($datos->titulo) ?></h3>
-                <p><strong>Publicado por:</strong> <?= htmlspecialchars($datos->nombre_usuario) ?></p>
-                <p><strong>Categoría:</strong> <?= htmlspecialchars($datos->nombre_categoria) ?></p>
-                <p><strong>Ubicación:</strong> <?= htmlspecialchars($datos->ubicacion) ?></p>
-                <p><strong>Descripción:</strong> <?= htmlspecialchars($datos->descripcion) ?></p>
-                <p><strong>Precio:</strong> <?= htmlspecialchars($datos->precio) ?></p>
+                <div>
+                    <p><strong>Publicado por:</strong> <?= htmlspecialchars($datos->nombre_usuario) ?></p>
+                    <p><strong>Categoría:</strong> <?= htmlspecialchars($datos->nombre_categoria) ?></p>
+                    <p><strong>Ubicación:</strong> <?= htmlspecialchars($datos->ubicacion) ?></p>
+                    <p><strong>Descripción:</strong> <?= htmlspecialchars($datos->descripcion) ?></p>
+                    <p><strong>Precio:</strong> <?= htmlspecialchars($datos->precio) ?></p>
+                </div>
+                
 
 
                 <?php if (!empty($imagenes)) { ?>
                     <h2>Imágenes cargadas del Anuncio</h2>
-                    <?php foreach ($imagenes as $img) { ?>
-                        <div class="card">
-                            <div class="card-container">
-                                <img src="<?= BASE_URL . $img->ruta_imagen ?>" alt="Imagen del anuncio" width="150">
+                    <div class="separacion-img">
+                        <?php foreach ($imagenes as $img) { ?>
+                            <div class="card">
+                                <div class="card-container card-detalles_imagenes">
+                                    <img src="<?= BASE_URL . $img->ruta_imagen ?>" alt="Imagen del anuncio" width="150px">
+                                </div>
                             </div>
-                        </div>
-                    <?php } ?>
+                        <?php } ?>
+                    </div>
                 <?php } else { ?>
                     <div class="card-container">
                         <h2>En este anuncio no se cargaron imágenes</h2>

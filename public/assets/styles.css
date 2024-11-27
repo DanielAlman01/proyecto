@@ -1,3 +1,38 @@
+:root{
+
+    /* Colores */
+    --color-blanco: #ffffff;
+    --color-azul: #2970DB;
+    --color-negro: #000;
+    --color-gris: #F2F6F8;
+    --color-azul-oscuro: #004AAD;
+    --color-trasparente: transparent;
+
+    /* Fuentes */
+        /* Fuentes - pc */
+        --fuenta-titel: 2.5rem;
+        --fuente-subtitel:1.8rem;
+        --fuente-parrafo: 1.3rem;
+
+        /* Fuentes - movil */
+        --fuenta-titel-mv: 2.8rem;
+        --fuente-subtitel-mv:1.8rem;
+        --fuente-parrafo-mv: 1.4rem;
+
+    /* Famila de texto */
+    --text-family-principla: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+    /* Negrita */
+    --text-delgado: 200;
+    --text-regular: 400;
+    --text-negrita: 700;
+
+
+}
+
+
+/* ------------------------------------------------------------------ DISEÑOS PRINCIPALES  ------------------------------------------------------------------- */
+
 /* Reset básico */
 * {
     margin: 0;
@@ -9,7 +44,7 @@
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    background-color: #f4f4f9;
+    background-color: var(--color-gris);
 }
 
 
@@ -19,6 +54,10 @@ body {
     /* Asegura que el body ocupe el 100% de la altura de la ventana */
     margin: 0;
     /* Elimina el margen por defecto */
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .container {
@@ -29,10 +68,20 @@ body {
     /* Hace que el contenedor tenga al menos la altura de la ventana */
 }
 
+/* ------------------------------------------------------------------ HEADER ------------------------------------------------------------------- */
+
 header {
-    background-color: #333;
+    background-image: url(./imgs/banner.png);
     color: #fff;
-    padding: 10px 20px;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-height: 30vh !important;
+    width: 100vw;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 
 h1 {
@@ -42,9 +91,7 @@ h1 {
 
 /* Estilo del contenedor del menú */
 nav {
-    background-color: #333;
-    display: flex;
-    justify-content: center;
+    background-color: var(--color-trasparente);
 }
 
 nav ul {
@@ -53,6 +100,15 @@ nav ul {
     margin: 0;
     display: flex;
     align-items: center;
+    gap: 15px;
+}
+
+li{
+    background-color: var(--color-gris);
+    padding: 2px 30px;
+    border: 2px solid var(--color-trasparente);
+    border-radius: 8px;
+    cursor: pointer;
 }
 
 nav ul li {
@@ -60,9 +116,8 @@ nav ul li {
 }
 
 nav a {
-    color: white;
+    color: var(--color-negro);
     text-decoration: none;
-    padding: 15px 20px;
     display: block;
 }
 
@@ -70,7 +125,7 @@ nav a {
 nav ul .dropdown {
     display: none;
     position: absolute;
-    background: #444;
+    background: var(--color-trasparente);
     top: 100%;
     left: 0;
     min-width: 200px;
@@ -86,7 +141,7 @@ nav ul .dropdown li a {
 }
 
 nav ul .dropdown li a:hover {
-    background-color: #555;
+    background-color: var(--color-trasparente);
 }
 
 /* Mantener submenú abierto con :hover y :focus-within */
@@ -95,6 +150,71 @@ nav ul li:focus-within>.dropdown {
     display: block;
 }
 
+/* ------------------------------------------------------------------ HEADER MOVIL ------------------------------------------------------------------- */
+
+/* Media queries para dispositivos medianos (tabletas) */
+@media (max-width: 768px) {
+    .card {
+        width: calc(50% - 20px);
+        /* Muestra 2 tarjetas por fila */
+    }
+
+    nav ul {
+        flex-direction: column;
+        /* Coloca el menú en columna */
+        align-items: center;
+    }
+}
+
+/* Media queries para dispositivos pequeños (teléfonos) */
+@media (max-width: 480px) {
+    .card {
+        width: calc(100% - 20px);
+        /* Muestra 1 tarjeta por fila */
+    }
+
+    .dropdown {
+        position: static;
+        /* Ajusta el menú desplegable para que se muestre en una columna */
+    }
+
+    nav ul {
+        flex-direction: column;
+        /* Menú en columna */
+        gap: 5px;
+    }
+
+    nav ul li {
+        margin-right: 0;
+    }
+}
+
+/* Diseño responsivo para pantallas pequeñas */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        width: 100%;
+    }
+
+    nav ul .dropdown {
+        position: static;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ------------------------------------------------------------------ BOTONES DE LA WEB  ------------------------------------------------------------------- */
 
 /*Estilo personalizados para algunos anclas*/
 /* Clase para enlaces estilizados */
@@ -124,33 +244,117 @@ nav ul li:focus-within>.dropdown {
     box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
 }
 
-
-/* Estilo del contenedor del menú */
-nav {
-    background-color: #333;
-    display: flex;
-    justify-content: center;
+/* Estilo base para el enlace que se parece a un botón */
+.btn {
+    display: inline-block; /* Para que el enlace se comporte como un bloque pero no ocupe toda la línea */
+    padding: 5px 30px; /* Espaciado interno (tamaño del botón) */
+    color: #fff; /* Color del texto (blanco) */
+    text-align: center; /* Centrar el texto dentro del enlace */
+    text-decoration: none; /* Elimina el subrayado predeterminado de los enlaces */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 14px; /* Tamaño de la fuente */
+    font-weight:600; /* Hacer el texto en negrita */
+    transition: background-color 0.3s ease, transform 0.2s; /* Efectos de transición */
 }
 
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+/* Efecto hover (cuando el ratón pasa sobre el botón) */
+.btn:hover {
+    
+    transform: scale(1.05); /* Efecto de agrandamiento suave */
+}
+
+/* Efecto active (cuando el botón es presionado) */
+.btn:active {
+    
+    transform: scale(1); /* Restablecer el tamaño cuando se presiona */
+}
+
+/* Efecto focus (cuando el botón tiene el foco, por ejemplo, con el teclado) */
+.btn:focus {
+    outline: none; /* Eliminar el contorno predeterminado al dar foco */
+    
+}
+
+.btn-azul {
+    background-color: #007bff; /* Color de fondo del botón (azul) */
+    background-color: #0056b3; /* Cambia el color de fondo al pasar el ratón */
+    background-color: #004085; /* Color más oscuro al hacer clic */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Agregar un resplandor azul */
+
+}
+
+
+.btn-rojo {
+    background-color: #f45516; /* Color de fondo del botón (azul) */
+    background-color: #f50606; /* Cambia el color de fondo al pasar el ratón */
+    background-color: #851200; /* Color más oscuro al hacer clic */
+    box-shadow: 0 0 5px rgba(255, 30, 0, 0.5); /* Agregar un resplandor azul */
+
+}
+
+
+.btn-gris {
+    background-color: var(--color-azul);
+}
+
+.btn-verde {
+    background-color: #22631f; /* Color de fondo del botón (azul) */
+    background-color: #1d6127; /* Cambia el color de fondo al pasar el ratón */
+    background-color: #134213; /* Color más oscuro al hacer clic */
+    box-shadow: 0 0 5px rgba(24, 47, 19, 0.5); /* Agregar un resplandor azul */
+
+}
+
+.btn-like{
     display: flex;
+    justify-content: space-between;
     align-items: center;
 }
 
-nav ul li {
-    position: relative;
-    margin-right: 20px;
+.crad-contend_prin{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 550px;
+
 }
 
-nav a {
-    color: white;
-    text-decoration: none;
-    padding: 15px 20px;
-    display: block;
+/* Estilos para botones de like */
+.like-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    color: #888;
 }
+
+.like-btn:hover {
+    color: #333;
+}
+
+/* Responsividad */
+/* Responsividad para pantallas pequeñas */
+/* Clase opcional para ajustar tamaño en pantallas más pequeñas */
+@media (max-width: 480px) {
+    .btn-link {
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ------------------------------------------------------------------ SUBMENU ESTILOS  ------------------------------------------------------------------- */
 
 /* Estilos para el submenú */
 .dropdown {
@@ -184,10 +388,24 @@ nav a {
 }
 
 main {
-    flex: 1;
-    padding: 20px 20px;
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
 }
+
+
+
+
+
+
+
+
+
+
+
+/* ------------------------------------------------------------------ DISEÑO DE LAS TABLAS  ------------------------------------------------------------------- */
 
 
 /*Estilo para las tablas*/
@@ -252,10 +470,29 @@ main {
 
 
 
+
+
+
+
+
+/* ------------------------------------------------------------------ BOTONES DE LA WEB  ------------------------------------------------------------------- */
+
 .section {
-    padding: 20px;
+    width: 90vw;
+    margin-top: 4vh;
+    margin-bottom: 8vh;
+    display: flex;
+    flex-direction: column;
+    gap: 3vh;
 }
 
+
+
+
+
+
+
+/* ------------------------------------------------------------------ BOTONES DE LA WEB  ------------------------------------------------------------------- */
 
 /* Estilos del contenedor de tarjetas */
 .card-container {
@@ -263,36 +500,40 @@ main {
     flex-wrap: wrap;
     justify-content: center;
     /* Centra las tarjetas en la página */
-    margin: 0 auto;
+    margin: 0;
     /* Aumenta el margen a los lados para alejar las tarjetas de los bordes */
-    padding: 10px;
-    /* Añade un padding para evitar bordes muy ajustados */
+    gap: 20px;
 }
 
 
 /* Estilos para las tarjetas */
 .card {
     background-color: #ffffff;
-    border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 10px;
+    padding: 20px;
     /* Reduce el padding interno de la tarjeta */
-    margin: 5px;
-    /* Mantiene el margen entre las tarjetas */
     flex: 1 1 30%;
     /* Mantiene 3 tarjetas por fila */
-    max-width: 300px;
+    max-width: 350px;
     /* Ajustar el tamaño máximo de la tarjeta */
     transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.separacion-img{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 2vh 0px;
 }
 
 .card img {
     width: 100%;
     /* Hace que la imagen ocupe todo el ancho de la tarjeta */
-    height: auto;
+    height: 30vh;
     /* Mantiene la relación de aspecto */
-    border-radius: 8px 8px 0 0;
+    border-radius: 8px;
     /* Bordes redondeados en la parte superior */
+    object-fit: cover;
 }
 
 .card h3 {
@@ -318,6 +559,11 @@ main {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
+.card-detalles_imagenes{
+    border: none;
+
+}
+
 /*
 
 .login-section {
@@ -337,105 +583,93 @@ main {
 
 */
 
-
-/* Estilo base para el enlace que se parece a un botón */
-.btn {
-    display: inline-block; /* Para que el enlace se comporte como un bloque pero no ocupe toda la línea */
-    padding: 10px 20px; /* Espaciado interno (tamaño del botón) */
-    color: #fff; /* Color del texto (blanco) */
-    text-align: center; /* Centrar el texto dentro del enlace */
-    text-decoration: none; /* Elimina el subrayado predeterminado de los enlaces */
-    border-radius: 5px; /* Bordes redondeados */
-    font-size: 14px; /* Tamaño de la fuente */
-    font-weight:600; /* Hacer el texto en negrita */
-    transition: background-color 0.3s ease, transform 0.2s; /* Efectos de transición */
-}
-
-/* Efecto hover (cuando el ratón pasa sobre el botón) */
-.btn:hover {
-    
-    transform: scale(1.05); /* Efecto de agrandamiento suave */
-}
-
-/* Efecto active (cuando el botón es presionado) */
-.btn:active {
-    
-    transform: scale(1); /* Restablecer el tamaño cuando se presiona */
-}
-
-/* Efecto focus (cuando el botón tiene el foco, por ejemplo, con el teclado) */
-.btn:focus {
-    outline: none; /* Eliminar el contorno predeterminado al dar foco */
-    
-}
-
-.btn-azul {
-    background-color: #007bff; /* Color de fondo del botón (azul) */
-    background-color: #0056b3; /* Cambia el color de fondo al pasar el ratón */
-    background-color: #004085; /* Color más oscuro al hacer clic */
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Agregar un resplandor azul */
-
-}
-
-
-.btn-rojo {
-    background-color: #f45516; /* Color de fondo del botón (azul) */
-    background-color: #f50606; /* Cambia el color de fondo al pasar el ratón */
-    background-color: #851200; /* Color más oscuro al hacer clic */
-    box-shadow: 0 0 5px rgba(255, 30, 0, 0.5); /* Agregar un resplandor azul */
-
-}
-
-
-.btn-gris {
-    background-color: #aca39f; /* Color de fondo del botón (azul) */
-    background-color: #888686; /* Cambia el color de fondo al pasar el ratón */
-    background-color: #605e5e; /* Color más oscuro al hacer clic */
-    box-shadow: 0 0 5px rgba(28, 91, 28, 0.5); /* Agregar un resplandor azul */
-
-}
-
-.btn-verde {
-    background-color: #22631f; /* Color de fondo del botón (azul) */
-    background-color: #1d6127; /* Cambia el color de fondo al pasar el ratón */
-    background-color: #134213; /* Color más oscuro al hacer clic */
-    box-shadow: 0 0 5px rgba(24, 47, 19, 0.5); /* Agregar un resplandor azul */
-
-}
-
 footer {
-    text-align: center;
-    padding: 10px;
-    background: #333;
-    color: white;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
+.con-footer{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 90vw;
+    margin: 5vh 0;
+}
 
+.sec-medio-footer{
+    display: flex;
+    justify-content: space-between;
+}
 
-/* Estilos para botones de like */
-.like-btn {
-    background: none;
-    border: none;
+.btn-redes{
+    background-color: var(--color-blanco);
+    padding: 10px 30px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 1.2em;
-    color: #888;
+    color: var(--color-azul);
+    font-family: Arial, Helvetica, sans-serif;
+    border: none;
 }
 
-.like-btn:hover {
-    color: #333;
+.letras-grande{
+    color: var(--color-blanco);
+    font-weight: 200 !important;
+    text-transform: uppercase;
+    font-size: 3rem;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
 }
 
+.color-blanco{
+    color: var(--color-blanco);
+}
 
+.cont-footer-prin{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    gap: 20px;
+    width: 90vw;
+    padding: 5vh 0;
+}
 
+.bg-footer-blue{
+    background-color: var(--color-azul);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
 
+.cont-btn{
+    display: flex;
+    gap: 15px;
+}
+
+.text-clasi{
+    color: var(--color-azul);
+    font-weight: 400;
+}
+
+.color-negro{
+    color: var(--text-negrita);
+    font-weight: 600;
+}
 
 /* Contenedor principal del formulario */
 .registration-section {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 70vh;
+    padding: 3vh 0;
     /*background-color: #f4f4f9;*/
+}
+
+.sec-titel_prin{
+    margin-top: 3vh;
 }
 
 
@@ -461,8 +695,7 @@ footer {
     padding: 20px 30px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    width: 100%;
+    width: 600px;
     gap: 15px;
     /* Espacio entre los elementos */
 }
@@ -516,9 +749,9 @@ footer {
 .registration-form button,
 .login-form button {
     padding: 10px;
-    background-color: #333;
+    background-color: var(--color-azul);
     /* Color de fondo del botón */
-    color: #ffffff;
+    color: var(--color-blanco);
     /* Color del texto en blanco para contraste */
     border: none;
     border-radius: 5px;
@@ -526,6 +759,7 @@ footer {
     cursor: pointer;
     width: 100%;
     transition: background-color 0.3s;
+    margin-top: 20px;
 }
 
 .registration-form button:hover,
@@ -673,12 +907,12 @@ footer {
     padding: 20px 30px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
+
 
 .contact-form h2 {
     text-align: center;
@@ -702,17 +936,16 @@ footer {
 
 .contact-form button {
     padding: 10px;
-    background-color: #333;
-    color: #fff;
+    background-color: var(--color-azul);
+    color: var(--color-blanco);
     border: none;
     cursor: pointer;
     border-radius: 5px;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: var(--text-family-principla);
 }
-
-.contact-form button:hover {
-    background-color: #555;
-}
-
 
 /*Estilo para formulario de registro de anuncios*/
 .contact-section {
@@ -722,18 +955,6 @@ footer {
     min-height: 70vh;
     padding: 20px;
     background-color: #f4f4f9;
-}
-
-.contact-form {
-    background-color: #ffffff;
-    padding: 20px 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
 }
 
 .contact-form h2 {
@@ -755,17 +976,10 @@ footer {
     width: 100%;
 }
 
-.contact-form button {
-    padding: 10px;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.contact-form button:hover {
-    background-color: #555;
+.inter-buscador{
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr;
+    gap: 20px;
 }
 
 
@@ -776,12 +990,10 @@ footer {
 }
 
 #anuncio-detalle .card {
-    background-color: #f9f9f9;
     padding: 20px;
     border-radius: 10px;
-    width: 80%;
+    width: 100%;
     max-width: 800px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #anuncio-detalle .card img {
@@ -807,15 +1019,7 @@ footer {
 
 
 
-/* Responsividad */
-/* Responsividad para pantallas pequeñas */
-/* Clase opcional para ajustar tamaño en pantallas más pequeñas */
-@media (max-width: 480px) {
-    .btn-link {
-        padding: 8px 12px;
-        font-size: 0.9em;
-    }
-}
+
 
 
 /* Diseño responsivo para pantallas pequeñas */
@@ -857,44 +1061,5 @@ footer {
     .login-form {
         padding: 15px 20px;
         box-shadow: none;
-    }
-}
-
-
-
-/* Media queries para dispositivos medianos (tabletas) */
-@media (max-width: 768px) {
-    .card {
-        width: calc(50% - 20px);
-        /* Muestra 2 tarjetas por fila */
-    }
-
-    nav ul {
-        flex-direction: column;
-        /* Coloca el menú en columna */
-        align-items: center;
-    }
-}
-
-/* Media queries para dispositivos pequeños (teléfonos) */
-@media (max-width: 480px) {
-    .card {
-        width: calc(100% - 20px);
-        /* Muestra 1 tarjeta por fila */
-    }
-
-    .dropdown {
-        position: static;
-        /* Ajusta el menú desplegable para que se muestre en una columna */
-    }
-
-    nav ul {
-        flex-direction: column;
-        /* Menú en columna */
-        gap: 5px;
-    }
-
-    nav ul li {
-        margin-right: 0;
     }
 }
